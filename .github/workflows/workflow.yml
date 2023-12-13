@@ -17,10 +17,9 @@ jobs:
           FOLDER: public #directory to generate index
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-pages-artifact@v1
         with:
-          name: directory-listing
-          path: public # upload generated folder
+          path: "public" # upload generated folder
 
   deploy:
     needs: pages-directory-listing
@@ -31,17 +30,11 @@ jobs:
     # Deploy to the github-pages environment
     environment:
       name: github-pages
-      url: ${{ needs.pages-directory-listing.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
 
     # Specify runner + deployment step
     runs-on: ubuntu-latest
     steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-        with:
-          name: directory-listing
-          path: public
-
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
