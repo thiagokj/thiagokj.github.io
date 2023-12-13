@@ -19,7 +19,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v2
         with:
-          name: public
+          name: directory-listing
           path: public # upload generated folder
 
   deploy:
@@ -31,7 +31,7 @@ jobs:
     # Deploy to the github-pages environment
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: ${{ needs.pages-directory-listing.outputs.page_url }}
 
     # Specify runner + deployment step
     runs-on: ubuntu-latest
@@ -39,7 +39,7 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v2
         with:
-          name: public
+          name: directory-listing
           path: public
 
       - name: Deploy to GitHub Pages
