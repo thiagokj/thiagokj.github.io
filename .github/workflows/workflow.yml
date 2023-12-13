@@ -13,9 +13,14 @@ jobs:
 
       - name: Generate Directory Listings
         uses: jayanta525/github-pages-directory-listing@v4.0.0
+        with:
+          FOLDER: public #directory to generate index
+          BASE: public
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
+        with:
+          path: "public" # upload generated folder
 
   deploy:
     needs: pages-directory-listing
