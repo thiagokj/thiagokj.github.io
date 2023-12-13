@@ -9,13 +9,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          ref: main # checkout different branch
+          ref: public-branch #checkout different branch
 
       - name: Generate Directory Listings
-        uses: peaceiris/actions-gh-pages@v3
+        uses: jayanta525/github-pages-directory-listing@v4.0.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
+          FOLDER: public #directory to generate index
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: "public" # upload generated folder
 
   deploy:
     needs: pages-directory-listing
