@@ -9,12 +9,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
         with:
-          ref: public-branch #checkout different branch
+          ref: public-branch # checkout different branch
 
       - name: Generate Directory Listings
         uses: jayanta525/github-pages-directory-listing@v4.0.0
         with:
-          FOLDER: public #directory to generate index
+          FOLDER: public # directory to generate index
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
