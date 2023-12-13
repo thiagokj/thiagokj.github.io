@@ -16,6 +16,13 @@ jobs:
         with:
           FOLDER: public #directory to generate index
 
+      - name: Modify Directory Listings
+        run: |
+          # Read the generated index file
+          INDEX_FILE="path/to/your/index.html"
+          # Modify the links to include the /public prefix
+          sed -i 's|href="|href="/public/|g' $INDEX_FILE
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
